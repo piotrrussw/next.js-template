@@ -1,15 +1,15 @@
 # Next.js quick start template
 
-###Requirements:
+### Requirements:
 * node_v12+
 
-###Run:
+### Run:
 ```bash
 npm install
 npm run dev
 ```
 
-###Template 
+### Template 
 * Next.js
 * SCSS modules
 * Absolute imports
