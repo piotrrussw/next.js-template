@@ -19,3 +19,4 @@ npm run dev
 * eslint (with react plugin)
 * prettier
 * tests: jest, testing-library
+* hooks: pre-commit, pre-push
