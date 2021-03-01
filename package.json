@@ -10,37 +10,63 @@
         "start": "next start",
         "test": "jest",
         "test:watch": "npm test -- --watch",
+        "stylelint": "stylelint ./src",
+        "stylelint:fix": "stylelint --fix ./src",
         "lint": "eslint --ext .js ./",
         "lint:fix": "eslint --fix . --ignore-path ./.gitignore",
         "prettier": "prettier --write src/*"
     },
     "dependencies": {
-        "next": "^10.0.5",
+        "next": "^10.0.7",
         "normalize.css": "^8.0.1",
         "prop-types": "^15.7.2",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
-        "sass": "^1.30.0"
+        "sass": "^1.32.8"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^5.11.9",
-        "@testing-library/react": "^11.2.3",
+        "@testing-library/react": "^11.2.5",
         "babel-jest": "^26.6.3",
-        "eslint": "^7.15.0",
-        "eslint-config-prettier": "^7.2.0",
+        "eslint": "^7.21.0",
+        "eslint-config-prettier": "^8.1.0",
         "eslint-plugin-jsx-a11y": "^6.4.1",
         "eslint-plugin-prettier": "^3.3.1",
-        "eslint-plugin-react": "^7.21.5",
+        "eslint-plugin-react": "^7.22.0",
         "eslint-plugin-simple-import-sort": "^7.0.0",
         "husky": "^4.3.8",
+        "import-sort-cli": "6.0.0",
+        "import-sort-style-module-scoped": "1.0.3",
         "jest": "^26.6.3",
         "jest-css-modules": "^2.1.0",
-        "prettier": "^2.2.1"
+        "lint-staged": "10.5.4",
+        "prettier": "^2.2.1",
+        "stylelint": "13.11.0",
+        "stylelint-config-prettier": "8.0.2",
+        "stylelint-config-recommended-scss": "4.2.0",
+        "stylelint-scss": "3.19.0"
+    },
+    "importSort": {
+        ".js": {
+            "parser": "babylon",
+            "style": "module-scoped",
+            "options": {}
+        }
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run lint:fix",
-            "pre-push": "npm run lint:fix && npm test"
+            "pre-commit": "lint-staged && git add . && npm test"
         }
+    },
+    "lint-staged": {
+        "**/*.{css,scss}": [
+            "prettier --write",
+            "stylelint --fix"
+        ],
+        "**/*.{js,jsx,ts,tsx}": [
+            "import-sort --write",
+            "prettier --write",
+            "eslint --fix"
+        ]
     }
 }
